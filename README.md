@@ -1,7 +1,6 @@
 COMP249 Web Technology 2019: Javascript Web Application
 ===
-Student ID : 44292252
-Student Name : Muntasir Adnan
+Name : Muntasir Adnan
 
 <b>/products:</b> provides a json representation of the database that we are working on.
 
