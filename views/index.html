@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THE WT</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+<body>
+
+<header class="banner">
+    <h1>The WT</h1>
+</header>
+
+<div class="content">
+
+    <p>These URLs return JSON responses:</p>
+    <ul>
+        <li><a href="/products">List of Products</a></li>
+        <li><a href="/cart">Contents of Cart</a></li>
+    </ul>
+
+    <p></p>
+
+</div>
+<br>
+
+<div id="product"></div>
+<br>
+<br>
+<div id="productDetails"></div>
+<br>
+<br>
+<h2><div id="cart" align="center"></div></h2>
+<br>
+<br>
+<div id= "cartTable"></div>
+
+
+
+
+
+<script type="x-handlebars-template" id="productTemplate">
+    <table align="center" border="1" width="70%">
+        <thead>
+        <tr>
+
+            <th id = "sortByName">Name</th>
+            <th id = "sortByPrice">Price</th>
+        </tr>
+        </thead>
+        {{#each products}}
+        <tbody>
+        <tr>
+            <td class="product-button" data-parametre="{{id}}">{{name}}</td>
+            <td>{{unit_cost}}</td>
+        </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</script>
+
+<script type="x-handlebars-template" id="detailTemplate">
+    <ul id = "list">
+
+
+
+            <h2><p><li>{{name}}</li></h2></p>
+            <br>
+            <li> <img src = {{image_url}}></li>
+            <li>{{{description}}}</li>
+            <li>Price : ${{unit_cost}}</li>
+            <li>
+                <form action="/cart" method="post" id = "ajaxForm" >
+                    <ul>
+                        <input type="hidden" name="productid" value={{id}}>
+                        <br>
+                        <li id="line">Quantity: <input type="number" name="quantity"></li>
+                        <li id="line"><input type="submit" id="stay" value="Add"></li>
+                    </ul>
+                    <br>
+                    <input type="hidden" name="update" value="0">
+                </form>
+            </li>
+
+            <li>
+                <form action="/cart" method="post" id = "ajaxFormUpdate">
+                <ul>
+                    <input type="hidden" name="productid" value = {{id}}>
+                    <br>
+                    <li id = "line">Quantity: <input type="number" name="quantity"></li>
+                    <li id = "line"><input type="submit" id = "stay1" value="Update"></li>
+                </ul>
+                <input type="hidden" name="update" value="1">
+                </form>
+            </li>
+            <br>
+            <li> <button id="btn">Close</button></li>
+
+
+
+    </ul>
+</script>
+
+<script type="x-handlebars-template" id="cartTemplate">
+    <table id = "update" style="border: 0px;" align = center  width="70%">
+        <thead>
+        <tr>
+
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        {{#each cartItem}}
+        <tbody>
+        <tr>
+            <td>{{name}}</td>
+            <td>{{quantity}}</td>
+            <td>${{cost}}</td>
+        </tr>
+
+        {{/each}}
+        <tr>
+            <th> </th>
+            <th>Total Cost :</th>
+            <th>${{cartCost}}</th>
+        </tr>
+        <tr>
+            <th> </th>
+            <th><button id = 'closeCart'> Close Cart </button> </th>
+            <th> </th>
+        </tr>
+        </tbody>
+    </table>
+</script>
+
+<footer class="banner">
+    <p>Copyright &copy; 2019 COMP249 Web Technology</p>
+</footer>
+
+<!-- load Javascript -->
+<script src="/static/js/handlebars-v4.1.2.js"></script>
+<script src="/static/js/jquery-3.4.0.js"></script>
+<script src="/static/js/model.js"></script>
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>
