@@ -1,4 +1,4 @@
-COMP249 Web Technology 2019: Javascript Web Application
+Javascript Web Application
 ===
 Name : Muntasir Adnan
 
